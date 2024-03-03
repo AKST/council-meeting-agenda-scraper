@@ -6,7 +6,7 @@ from datetime import datetime
 
 @register_scraper
 class BaysideVicScraper(BaseScraper):
-    def __init__(self):
+    def __init__(self, **kwargs):
         council_name = "bayside_vic"
         state = "VIC"
         base_url = "https://www.bayside.vic.gov.au"

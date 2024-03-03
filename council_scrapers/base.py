@@ -15,7 +15,7 @@ from typing import Callable, List, Optional, TypedDict
 
 
 def register_scraper(cls):
-    SCRAPER_REGISTRY[cls.__name__] = cls()
+    SCRAPER_REGISTRY[cls.__name__] = cls
     return cls
 
 

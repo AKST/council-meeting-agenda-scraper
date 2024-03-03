@@ -91,8 +91,9 @@ def processor(scraper_results: ScraperReturn, scraper: BaseScraper):
     logging.info(f"Finished with {council_name}.")
 
 
-def run_scrapers(args):
-    for scraper_name, scraper_instance in SCRAPER_REGISTRY.items():
+def run_scrapers(args, config):
+    for scraper_name, ScraperCls in SCRAPER_REGISTRY.items():
+        scraper_instance = ScraperCls(**config)
         if args.council is None or scraper_instance.council_name == args.council:
             logging.error(f"Running {scraper_instance.council_name} scraper")
             scraper_results = scraper_instance.scraper()
@@ -106,7 +107,7 @@ def run_scrapers(args):
                 )
 
 
-def main():
+def main(config):
     parser = argparse.ArgumentParser()
     parser.add_argument("--council", help="Scan only this council")
     args = parser.parse_args()
@@ -114,11 +115,13 @@ def main():
     if not os.path.exists("./agendas.db"):
         db.init()
 
-    run_scrapers(args)
+    run_scrapers(args, config)
 
 
 if __name__ == "__main__":
     setup_logging(level="INFO")
     logging.getLogger().name = "YIMBY-Scraper"
     logging.info("YIMBY SCRAPER Start")
-    main()
+    main({
+        "current_year": 2024,
+    })

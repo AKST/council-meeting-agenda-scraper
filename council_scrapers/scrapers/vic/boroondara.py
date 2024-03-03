@@ -5,7 +5,7 @@ import re
 
 @register_scraper
 class BoroondaraScraper(BaseScraper):
-    def __init__(self):
+    def __init__(self, **kwargs):
         council = "boroondara"
         state = "VIC"
         base_url = "https://www.boroondara.vic.gov.au"
@@ -110,10 +110,10 @@ class BoroondaraScraper(BaseScraper):
 
         self.logger.info(
             f"""
-            {scraper_return.name} 
-            {scraper_return.date} 
-            {scraper_return.time} 
-            {scraper_return.webpage_url} 
+            {scraper_return.name}
+            {scraper_return.date}
+            {scraper_return.time}
+            {scraper_return.webpage_url}
             {scraper_return.download_url}"""
         )
         self.logger.info(f"{self.council_name} scraper finished successfully")

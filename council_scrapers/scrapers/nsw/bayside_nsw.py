@@ -3,7 +3,7 @@ from council_scrapers.base import register_scraper, InfoCouncilScraper
 
 @register_scraper
 class BaysideNSWScraper(InfoCouncilScraper):
-    def __init__(self):
+    def __init__(self, **kwargs):
         council = "bayside"
         state = "NSW"
         base_url = "https://bayside.nsw.gov.au"
